@@ -10,8 +10,6 @@ export type ExplodeState = {
   spinSpeed: number
   autoSpin: boolean
   interactive: boolean
-  /** Use real transmission glass (only on opaque-background scenes). */
-  transmission: boolean
   hovered: PartId | null
   onSelect?: (id: PartId) => void
   lastTime: number
@@ -36,7 +34,6 @@ export function createExplode(init = 0, opts: Partial<ExplodeState> = {}): Explo
     spinSpeed: 0.16,
     autoSpin: true,
     interactive: false,
-    transmission: false,
     hovered: null,
     lastTime: -1,
     dragging: false,

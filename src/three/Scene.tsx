@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useMemo, useRef, useState, type RefObject } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { ContactShadows, Environment, Lightformer } from '@react-three/drei'
+import { ContactShadows, Environment, Lightformer, PerformanceMonitor } from '@react-three/drei'
 import { Bloom, EffectComposer } from '@react-three/postprocessing'
 import * as THREE from 'three'
 import Sproutly from './Sproutly'
@@ -135,7 +135,7 @@ function Floor() {
   })
   return (
     <group ref={ref}>
-      <ContactShadows opacity={0.75} scale={5} blur={2.4} far={2.2} resolution={512} color="#000000" />
+      <ContactShadows opacity={0.75} scale={5} blur={2.4} far={2.2} resolution={256} color="#000000" />
       <mesh rotation-x={-Math.PI / 2} material={pool} position-y={0.004}>
         <planeGeometry args={[4.6, 4.6]} />
       </mesh>
@@ -235,17 +235,24 @@ export default function SceneCanvas({ state, mode, selected = null, labels = tru
   const inView = useInView(wrap, '150px')
   const [ready, setReady] = useState(false)
   const low = useMemo(isCoarseOrSmall, [])
+  const [degraded, setDegraded] = useState(false)
   const opaque = mode === 'product'
 
   return (
     <div ref={wrap} className={`${styles.wrap} ${className ?? ''}`} data-ready={ready || undefined}>
       <Canvas
         frameloop={inView ? 'always' : 'never'}
-        dpr={[1, low ? 1.5 : 2]}
+        dpr={[1, degraded ? 1 : low ? 1.5 : 1.75]}
         camera={{ fov: 30, near: 0.1, far: 100, position: [0, 1, 12] }}
         gl={{ antialias: true, alpha: !opaque, powerPreference: 'high-performance' }}
         onCreated={() => requestAnimationFrame(() => setReady(true))}
       >
+        <PerformanceMonitor
+          flipflops={3}
+          onDecline={() => setDegraded(true)}
+          onIncline={() => setDegraded(false)}
+          onFallback={() => setDegraded(true)}
+        />
         <ExplodeContext.Provider value={state}>
           {opaque && <color attach="background" args={['#0b0d0c']} />}
           <Rig fit={FITS[mode]} wrap={wrap} />
@@ -255,7 +262,7 @@ export default function SceneCanvas({ state, mode, selected = null, labels = tru
           </Suspense>
           {labels && <LabelProjector labels={labelRefs} />}
           <Floor />
-          {opaque && !low && (
+          {opaque && !low && !degraded && (
             <EffectComposer multisampling={4}>
               <Bloom mipmapBlur luminanceThreshold={1} intensity={0.9} radius={0.7} />
             </EffectComposer>

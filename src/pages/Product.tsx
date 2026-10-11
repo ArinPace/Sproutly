@@ -61,7 +61,6 @@ function Viewer({ selected, setSelected }: { selected: PartId | null; setSelecte
     () =>
       createExplode(1, {
         interactive: true,
-        transmission: true,
         spinSpeed: 0.1,
         autoSpin: !prefersReducedMotion(),
         onSelect: (id) => setSelected(id),

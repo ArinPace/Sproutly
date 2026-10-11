@@ -1,42 +1,18 @@
 import { useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { MeshTransmissionMaterial } from '@react-three/drei'
 import * as THREE from 'three'
 import Part from './Part'
 import { DIMS } from '../parts'
 import { petalGeometry } from '../geometry'
 import { clearGlass, leaf, petal, pod, soil, stem } from '../materials'
-import { useExplode } from '../useExplode'
-import { isCoarseOrSmall } from '../../lib/store'
-
-const BG = new THREE.Color('#0b0d0c')
 
 export function Glass() {
   const { y0, y1, r } = DIMS.glass
   const h = y1 - y0
-  const s = useExplode()
-  const low = useMemo(isCoarseOrSmall, [])
   return (
     <Part id="glass">
-      <mesh position-y={y0 + h / 2} {...(s.transmission ? {} : { material: clearGlass() })} renderOrder={2}>
+      <mesh position-y={y0 + h / 2} material={clearGlass()} renderOrder={2}>
         <cylinderGeometry args={[r, r, h, 128, 1, true]} />
-        {s.transmission && (
-          <MeshTransmissionMaterial
-            backside
-            backsideThickness={0.05}
-            thickness={0.06}
-            samples={low ? 3 : 8}
-            resolution={low ? 256 : 768}
-            roughness={0.03}
-            ior={1.3}
-            chromaticAberration={0.035}
-            anisotropicBlur={0.08}
-            distortion={0}
-            transmission={1}
-            background={BG}
-            color="#f7fcff"
-          />
-        )}
       </mesh>
     </Part>
   )
