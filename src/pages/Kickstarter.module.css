@@ -1,0 +1,414 @@
+.hero {
+  padding: calc(var(--nav-h) + 96px) 0 clamp(64px, 8vw, 110px);
+}
+
+.hero .container {
+  display: grid;
+  gap: 32px;
+}
+
+.funding {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(28px, 6vw, 96px);
+  margin-top: 24px;
+}
+
+.stat {
+  display: grid;
+  gap: 6px;
+}
+
+.stat strong {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4vw, 60px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.stat:first-child strong {
+  color: var(--sprout);
+}
+
+.stat span {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.bar {
+  position: relative;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--line);
+  margin: 12px 0 36px;
+}
+
+.bar i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--glow), var(--sprout));
+  box-shadow: 0 0 18px color-mix(in srgb, var(--sprout) 60%, transparent);
+}
+
+.goalMark,
+.stretch {
+  position: absolute;
+  top: 14px;
+}
+
+.goalMark {
+  transform: translateX(-50%);
+}
+
+.goalMark::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -18px;
+  width: 1px;
+  height: 12px;
+  background: var(--glow);
+}
+
+.stretch {
+  right: 0;
+}
+
+.goalMark em,
+.stretch em {
+  font-style: normal;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ---------- Tiers ---------- */
+.tiersSection .container {
+  display: grid;
+  gap: 28px;
+}
+
+.tiers {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: clamp(32px, 5vw, 64px);
+}
+
+.tier {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 28px;
+  padding: 30px 26px 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-2);
+  transition:
+    border-color 0.4s,
+    transform 0.6s var(--ease);
+}
+
+.tier:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-4px);
+}
+
+.tier[data-featured] {
+  border-color: color-mix(in srgb, var(--ring) 55%, transparent);
+  background:
+    radial-gradient(90% 60% at 50% 0%, color-mix(in srgb, var(--ring) 12%, transparent), transparent 70%),
+    var(--surface);
+  box-shadow: 0 0 60px color-mix(in srgb, var(--ring) 10%, transparent);
+}
+
+.tier header {
+  display: grid;
+  gap: 10px;
+}
+
+.tier header span {
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sprout);
+}
+
+.tier h3 {
+  font-size: 24px;
+  letter-spacing: -0.02em;
+}
+
+.price {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.price sup {
+  font-size: 22px;
+  margin-right: 2px;
+  color: var(--muted);
+}
+
+.tier ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.tier li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 14.5px;
+  color: var(--muted);
+}
+
+.tier li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid var(--glow);
+}
+
+.note {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--dim);
+}
+
+/* ---------- FAQ ---------- */
+.faqGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(40px, 6vw, 100px);
+  align-items: start;
+}
+
+.faqGrid > div {
+  display: grid;
+  gap: 24px;
+}
+
+.faq {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-strong);
+}
+
+.faq li {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 0;
+  text-align: left;
+  font-family: var(--font-display);
+  font-size: clamp(18px, 1.6vw, 22px);
+  letter-spacing: -0.015em;
+  transition: color 0.3s;
+}
+
+.faq button:hover {
+  color: var(--glow);
+}
+
+.faq button i {
+  position: relative;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  transition:
+    transform 0.5s var(--ease),
+    border-color 0.3s;
+}
+
+.faq button i::before,
+.faq button i::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 1.5px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+}
+
+.faq button i::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.faq li[data-open] button i {
+  transform: rotate(45deg);
+  border-color: var(--sprout);
+  color: var(--sprout);
+}
+
+.answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.6s var(--ease);
+}
+
+.answer p {
+  overflow: hidden;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+.faq li[data-open] .answer {
+  grid-template-rows: 1fr;
+}
+
+.faq li[data-open] .answer p {
+  padding-bottom: 24px;
+}
+
+/* ---------- Signup ---------- */
+.signupSection {
+  padding: 0 0 clamp(96px, 12vw, 160px);
+}
+
+.signup {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 24px;
+  justify-items: start;
+  padding: clamp(36px, 6vw, 80px);
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 8px);
+  background:
+    radial-gradient(60% 80% at 100% 100%, color-mix(in srgb, var(--walnut) 45%, transparent), transparent 70%),
+    var(--bg-2);
+}
+
+.signupRing {
+  position: absolute;
+  right: -120px;
+  top: -120px;
+  width: 420px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--ring) 45%, transparent);
+  box-shadow: 0 0 80px color-mix(in srgb, var(--ring) 16%, transparent);
+  pointer-events: none;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: min(560px, 100%);
+}
+
+.form input {
+  flex: 1 1 240px;
+  height: 56px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form input:focus {
+  border-color: var(--glow);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ring) 14%, transparent);
+}
+
+.success {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  animation: pop 0.7s var(--ease) both;
+}
+
+.success p {
+  color: var(--muted);
+}
+
+.success b {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.check {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--sprout);
+  box-shadow: 0 0 30px var(--sprout);
+  position: relative;
+}
+
+.check::after {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 12px;
+  width: 9px;
+  height: 16px;
+  border: solid var(--bg);
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.signup small {
+  font-size: 11px;
+  color: var(--dim);
+}
+
+@media (max-width: 1100px) {
+  .tiers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .tiers,
+  .faqGrid {
+    grid-template-columns: 1fr;
+  }
+  .stretch {
+    display: none;
+  }
+}

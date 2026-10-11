@@ -1,0 +1,41 @@
+@property --ring {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #ffe9c7;
+}
+
+:root {
+  transition: --ring 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --bg: #0b0d0c;
+  --bg-2: #101412;
+  --surface: #141917;
+  --surface-2: #1a201d;
+  --line: rgba(255, 233, 199, 0.1);
+  --line-strong: rgba(255, 233, 199, 0.22);
+
+  --walnut: #5a2e1f;
+  --walnut-2: #7a4530;
+  --glow: #ffe9c7;
+  --sprout: #7cffb2;
+  --petal: #e2574c;
+
+  --text: #ede8df;
+  --muted: #9b9a92;
+  --dim: #63645f;
+
+  /* Updated live by the mood picker */
+  --ring: #ffe9c7;
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --radius: 22px;
+  --radius-sm: 12px;
+  --max: 1320px;
+  --gutter: clamp(20px, 4vw, 56px);
+  --nav-h: 76px;
+
+  --ease: cubic-bezier(0.22, 0.8, 0.2, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}

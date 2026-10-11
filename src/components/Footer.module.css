@@ -1,0 +1,118 @@
+.footer {
+  position: relative;
+  padding-top: 100px;
+  border-top: 1px solid var(--line);
+  background: radial-gradient(120% 70% at 50% 120%, color-mix(in srgb, var(--ring) 14%, transparent), transparent 70%);
+  overflow: hidden;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 1.1fr 2fr;
+  gap: 60px;
+}
+
+.brand {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.brand p {
+  color: var(--muted);
+  max-width: 36ch;
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.cols > div {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  font-size: 15px;
+}
+
+.cols h4 {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 6px;
+}
+
+.cols a {
+  color: var(--muted);
+  transition: color 0.3s;
+}
+
+.cols a:hover {
+  color: var(--glow);
+}
+
+.cols span {
+  color: var(--muted);
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.live i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sprout);
+  box-shadow: 0 0 10px var(--sprout);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.word {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(90px, 22vw, 340px);
+  letter-spacing: -0.07em;
+  line-height: 0.8;
+  text-align: center;
+  margin: 80px 0 0;
+  color: transparent;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--glow) 70%, transparent), transparent 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  user-select: none;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 28px 0 36px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--dim);
+}
+
+@media (max-width: 860px) {
+  .top {
+    grid-template-columns: 1fr;
+  }
+  .cols {
+    grid-template-columns: 1fr 1fr;
+  }
+  .bottom {
+    flex-direction: column;
+  }
+}
